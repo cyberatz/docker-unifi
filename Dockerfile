@@ -16,9 +16,12 @@ RUN \
  apt-get install -y \
 	execstack \
 	openjdk-8-jre-headless \
-	unifi \
 	wget && \
-
+	# unifi \
+ wget -O /tmp/unifi_sysvinit_all.deb \
+	https://www.ubnt.com/downloads/unifi/5.5.11-5107276ec2/unifi_sysvinit_all.deb && \
+    dpkg --install /tmp/unifi_sysvinit_all.deb && \
+    rm -rf /tmp/unifi_sysvinit_all.deb /var/lib/unifi/*	
 # fix execstack warning on library
  execstack -c \
 	/usr/lib/unifi/lib/native/Linux/amd64/libubnt_webrtc_jni.so && \
