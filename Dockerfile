@@ -12,12 +12,16 @@ ARG DEBIAN_FRONTEND="noninteractive"
 RUN \
  echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" >> /etc/apt/sources.list && \
  apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
- apt-get update && \
+ #apt-get update && \
  apt-get install -y \
 	execstack \
 	openjdk-8-jre-headless \
-	wget && \
+	wget \
+	binutils \
+	mongodb-server \
+	jsvc && \
 	# unifi \
+# NEW
  wget -O /tmp/unifi_sysvinit_all.deb \
 	https://www.ubnt.com/downloads/unifi/5.5.11-5107276ec2/unifi_sysvinit_all.deb && \
     dpkg --install /tmp/unifi_sysvinit_all.deb && \
